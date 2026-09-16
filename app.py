@@ -5,22 +5,24 @@ app = Flask(__name__)
 
 def check_grammar(text):
     corrections = {
-    "She go to school yesterday.": "She went to school yesterday.",
-    "He go to school every day.": "He goes to school every day.",
-    "They is happy.": "They are happy.",
-    "I is a student.": "I am a student.",
-    "She are my friend.": "She is my friend.",
-    "He don't like rice.": "He doesn't like rice.",
-    "I has a book.": "I have a book.",
-    "She have a car.": "She has a car.",
-    "They was playing football.": "They were playing football.",
-    "We is going home.": "We are going home."
-}
-    
+        "She go to school yesterday.": "She went to school yesterday.",
+        "He go to school every day.": "He goes to school every day.",
+        "I has a book.": "I have a book.",
+        "They is happy.": "They are happy.",
+        "He have a car.": "He has a car.",
+        "She have a pen.": "She has a pen.",
+        "They was happy.": "They were happy.",
+        "I is a student.": "I am a student.",
+        "We is ready.": "We are ready.",
+        "He don't like it.": "He doesn't like it."
+    }
 
-    cleaned_text = text.strip().lower().rstrip(".!?")
+    text = text.strip()
 
-    return corrections.get(cleaned_text, "No correction found.")
+    if text in corrections:
+        return corrections[text]
+
+    return "No correction found."
 
 
 @app.route("/", methods=["GET", "POST"])
