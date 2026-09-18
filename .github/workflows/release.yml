@@ -32,7 +32,7 @@ jobs:
 
       - name: Run automated tests
   env:
-    INJECT_FAILURE: "1"
+  INJECT_FAILURE: ${{ inputs.inject_failure }}
   run: pytest
 
       - name: Create release
