@@ -2,6 +2,12 @@ name: Release Pipeline
 
 on:
   workflow_dispatch:
+    inputs:
+      inject_failure:
+        description: "Run the controlled failure test"
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   release:
@@ -25,7 +31,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run automated tests
-        run: pytest
+  env:
+    INJECT_FAILURE: ${{ inputs.inject_failure }}
+  run: pytest
 
       - name: Create release
         uses: softprops/action-gh-release@v2
