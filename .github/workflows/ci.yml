@@ -16,7 +16,7 @@ on:
     branches: [main]
 
 jobs:
-  test:400
+  test:
     runs-on: ubuntu-latest
 
     steps:
